@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 //Chemins des routes
 const userRoutes = require("./routes/user.js");
 
+//Imporation de path, donne accès au chemin du système de fichiers
+const path = require("path");
+
 //Lancement d'express
 const app = express();
 
@@ -34,6 +37,8 @@ app.use((req, res, next) => {
 //Intercepte toutes les requêtes qui contiennent du JSON pour le mettre à disposition sur l'objet requête dans req.body
 //Remplace body parser
 app.use(express.json());
+
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth/", userRoutes);
 
