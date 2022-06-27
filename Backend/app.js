@@ -2,6 +2,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+//Chemins des routes
+const userRoutes = require("./routes/user.js");
+
 //Lancement d'express
 const app = express();
 
@@ -31,5 +34,7 @@ app.use((req, res, next) => {
 //Intercepte toutes les requêtes qui contiennent du JSON pour le mettre à disposition sur l'objet requête dans req.body
 //Remplace body parser
 app.use(express.json());
+
+app.use("/api/auth/", userRoutes);
 
 module.exports = app;
