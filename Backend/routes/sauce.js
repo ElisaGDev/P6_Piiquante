@@ -8,7 +8,7 @@ const sauceCtrl = require("../controllers/sauce");
 //Importation du middleware d'authentification à utiliser sur toutes les routes
 const auth = require("../middleware/auth");
 //Importation du middleware multer pour gestion enregistrement images, après 'auth'
-const multer = require("../middleware/multer");
+const multer = require("../middleware/multer-config");
 
 //Configuration des routes
 //Ajout d'une sauce, obligation de s'authentifier + multer qui gère les images
