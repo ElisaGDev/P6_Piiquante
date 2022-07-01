@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const sauceRoutes = require("./routes/sauce");
 
-//Imporation de path, donne accès au chemin du système de fichiers
+//Importation de path, donne accès au chemin du système de fichiers
 const path = require("path");
 
 //Lancement d'express

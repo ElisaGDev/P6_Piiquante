@@ -6,7 +6,6 @@ const MIME_TYPES = {
   "image/png": "png",
   "image/bmp": "bmp",
   "image/gif": "gif",
-  "image/x-icon": "ico",
   "image/svg+xml": "svg",
   "image/tiff": "tif",
   "image/tif": "tif",
