@@ -1,7 +1,8 @@
-//Importation d'express, mongoose, dotenv, helmet
+//Importation d'express, mongoose, dotenv, helmet, mongo-sanitize
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
 const dotenv = require("dotenv").config("../.env");
 console.log(dotenv);
 
@@ -42,6 +43,9 @@ app.use((req, res, next) => {
 //Intercepte toutes les requêtes qui contiennent du JSON pour le mettre à disposition sur l'objet requête dans req.body
 //Remplace body parser
 app.use(express.json());
+
+//Nettoie les champs utilisateurs des tentatives d'injection de code commençant par $ ou "."
+app.use(mongoSanitize());
 
 //Lancement d'helmet
 app.use(helmet());

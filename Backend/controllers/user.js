@@ -2,9 +2,18 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const maskData = require("../node_modules/maskdata");
 
 //Importation du models
 const User = require("../models/user");
+
+//Masquage de l'email
+const emailMask2Options = {
+  maskWith: "*",
+  unmaskedStartCharactersBeforeAt: 0,
+  unmaskedEndCharactersAfterAt: 0,
+  maskAtTheRate: false,
+};
 
 //Fonction signup pour l'enregistrer de nouveaux utilisateurs
 exports.signup = (req, res, next) => {
@@ -12,7 +21,7 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
-        email: req.body.email,
+        email: maskData.maskEmail2(req.body.email, emailMask2Options),
         password: hash,
       });
       user
@@ -25,7 +34,9 @@ exports.signup = (req, res, next) => {
 
 //Fonction login pour l'identification des utilisateurs existants
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  User.findOne({
+    email: maskData.maskEmail2(req.body.email, emailMask2Options),
+  })
     .then((user) => {
       if (!user) {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
