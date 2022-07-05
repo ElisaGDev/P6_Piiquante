@@ -1,6 +1,7 @@
-//Importation d'express, mongoose, dotenv
+//Importation d'express, mongoose, dotenv, helmet
 const express = require("express");
 const mongoose = require("mongoose");
+const helmet = require("helmet");
 const dotenv = require("dotenv").config("../.env");
 console.log(dotenv);
 
@@ -41,6 +42,9 @@ app.use((req, res, next) => {
 //Intercepte toutes les requêtes qui contiennent du JSON pour le mettre à disposition sur l'objet requête dans req.body
 //Remplace body parser
 app.use(express.json());
+
+//Lancement d'helmet
+app.use(helmet());
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 

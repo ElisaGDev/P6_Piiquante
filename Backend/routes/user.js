@@ -6,9 +6,10 @@ const router = express.Router();
 
 //Importation des dépendances nécessaires
 const userCtrl = require("../controllers/user");
+const validationPassword = require("../middleware/password");
 
 //Routes pour signup et login
-router.post("/signup", userCtrl.signup);
+router.post("/signup", validationPassword, userCtrl.signup);
 router.post("/login", userCtrl.login);
 
 //Exportation du modèle
