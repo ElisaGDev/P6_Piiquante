@@ -1,4 +1,4 @@
-//Importation bcrypt, jsonwebtoken, dotenv
+//Importation bcrypt, jsonwebtoken, dotenv, maskdata
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
